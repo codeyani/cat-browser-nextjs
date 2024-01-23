@@ -2,6 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/navigation';
 import { catValue } from './types';
 import Link from "next/link";
+import Image from 'next/image';
 
 const CatCard = ({ url, id }: catValue) => {
   const router = useRouter();
@@ -9,7 +10,15 @@ const CatCard = ({ url, id }: catValue) => {
   return (
     <div>
       <div className="card shadow-xl">
-        <figure><img src={url} alt="cat!" /></figure>
+        <figure>
+          <Image 
+            src={url}
+            alt="cat!"
+            width="0"
+            height="0"
+            sizes="100vw"
+            className="w-full h-auto" />
+        </figure>
         <div className="card-body">
           <div className="card-actions justify-end">
             <Link

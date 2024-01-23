@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { TCatDetailsProps, TDetails } from './types';
 import Link from "next/link";
 import { getBreedDetails } from '@/app/utilities/helper';
+import Image from 'next/image';
 
 const CatDetails = ({ params }: TCatDetailsProps) => {
   // State to hold cat details data
@@ -38,7 +39,16 @@ const CatDetails = ({ params }: TCatDetailsProps) => {
                 </Link>
               </div>
             </div>
-            <figure><img src={result.url} alt="Cat" /></figure>
+            <figure>
+              <Image
+                src={result.url}
+                alt="Cat" 
+                width="0"
+                height="0"
+                sizes="100vw"
+                className="w-full h-auto"
+              />
+            </figure>
             <div className="card-body">
               {/* Cat details */}
               <h2 className="card-title">{result.breeds[0].name}</h2>
