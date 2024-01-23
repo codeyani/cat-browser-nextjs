@@ -2,7 +2,6 @@
 
 import React, { Suspense, useEffect, useState } from 'react';
 import Select from '../elements/Select';
-import { useSearchParams } from 'next/navigation';
 import { catValue } from './types';
 import { getBreedLists, searchHandler } from '@/utilities/helper';
 import CatCard from './CatCard';
@@ -15,24 +14,22 @@ const SearchList = () => {
   const [page, setPage] = useState(1);
   const [result, setResult] = useState<catValue[]>([]);
   const [isLoadMore, setIsLoadMore] = useState(true);
-  const searchParams = useSearchParams();
- 
-  const breedParams = searchParams.get('breed');
 
-  // Fetch data based on breed parameter when it changes
+  // Fetch breed list on initial component mount
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const breedParams = urlParams.get('breed');
+    // Fetch cat list based on the breed parameter
     if (breedParams) {
-      const fetchData = async () => {
+      const fetchCatList = async () => {
         setSelectedBreed(breedParams);
         const newResult = await searchHandler(breedParams, result, 1);
         setResult(newResult);
       };
-      fetchData();
+      fetchCatList();
     }
-  }, [breedParams]);
 
-  // Fetch breed list on initial component mount
-  useEffect(() => {
+
     const fetchData = async () => {
       await getBreedLists().then(data => setBreedList(data));
     };
