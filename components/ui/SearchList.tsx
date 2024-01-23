@@ -78,21 +78,22 @@ const SearchList = () => {
           defaultValue={selectedBreed}
           options={breedList} />
         }
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
-          {result && result.map((item, index) => (
-            <div key={index}>
-              <CatCard url={item.url} id={item.id} />
-            </div>
-          ))}
-        </div>
-        { result.length === 0 && <div className="p-8 text-center">
-          <div>No cats available</div>
-        </div> }
-        {result.length > 0 && isLoadMore && <div className="p-8 text-center">
-          <button onClick={loadMoreData} className="btn btn-primary mb-8 w-52">Load more</button>
-        </div>}
       </Suspense>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+        {result && result.map((item, index) => (
+          <div key={index}>
+            <CatCard url={item.url} id={item.id} />
+          </div>
+        ))}
+      </div>
+      { result.length === 0 && <div className="p-8 text-center">
+        <div>No cats available</div>
+      </div> }
+      {result.length > 0 && isLoadMore && <div className="p-8 text-center">
+        <button onClick={loadMoreData} className="btn btn-primary mb-8 w-52">Load more</button>
+      </div>}
+      
     </div>
   );
 };
