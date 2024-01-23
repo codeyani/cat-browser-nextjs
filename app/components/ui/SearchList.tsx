@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { catValue } from './types';
 import { getBreedLists, searchHandler } from '@/app/utilities/helper';
 import CatCard from './CatCard';
+import Loading from './loading';
 
 const SearchList = () => {
   // State to hold form data
@@ -69,27 +70,29 @@ const SearchList = () => {
 
   return (
     <div>
-      {breedList && <Select
-        onChange={onChange}
-        label="Breed"
-        altLabel=""
-        defaultValue={selectedBreed}
-        options={breedList} />
-      }
+      <Suspense fallback={<Loading />}>
+        {breedList && <Select
+          onChange={onChange}
+          label="Breed"
+          altLabel=""
+          defaultValue={selectedBreed}
+          options={breedList} />
+        }
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
-        {result && result.map((item, index) => (
-          <div key={index}>
-            <CatCard url={item.url} id={item.id} />
-          </div>
-        ))}
-      </div>
-      { result.length === 0 && <div className="p-8 text-center">
-        <div>No cats available</div>
-      </div> }
-      {result.length > 0 && isLoadMore && <div className="p-8 text-center">
-        <button onClick={loadMoreData} className="btn btn-primary mb-8 w-52">Load more</button>
-      </div>}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+          {result && result.map((item, index) => (
+            <div key={index}>
+              <CatCard url={item.url} id={item.id} />
+            </div>
+          ))}
+        </div>
+        { result.length === 0 && <div className="p-8 text-center">
+          <div>No cats available</div>
+        </div> }
+        {result.length > 0 && isLoadMore && <div className="p-8 text-center">
+          <button onClick={loadMoreData} className="btn btn-primary mb-8 w-52">Load more</button>
+        </div>}
+      </Suspense>
     </div>
   );
 };
