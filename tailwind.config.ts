@@ -15,6 +15,23 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ".btn-primary": {
+            "background-color": "#007bff",
+            "border-color": "#007bff",
+            "color": "#ffffff",
+          },
+          ".btn-primary:hover": {
+            "background-color": "#006fff",
+            "border-color": "#006fff",
+          },
+        },
+      },
+    ],
+  },
 };
 export default config;
