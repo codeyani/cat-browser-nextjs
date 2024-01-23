@@ -1,4 +1,4 @@
-import SearchList from "./components/ui/SearchList";
+import SearchList from "../components/ui/SearchList";
 
 export default function Home() {
   return (

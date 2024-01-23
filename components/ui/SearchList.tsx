@@ -4,7 +4,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 import Select from '../elements/Select';
 import { useSearchParams } from 'next/navigation';
 import { catValue } from './types';
-import { getBreedLists, searchHandler } from '@/app/utilities/helper';
+import { getBreedLists, searchHandler } from '@/utilities/helper';
 import CatCard from './CatCard';
 import Loading from './loading';
 

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { TCatDetailsProps, TDetails } from './types';
 import Link from "next/link";
-import { getBreedDetails } from '@/app/utilities/helper';
+import { getBreedDetails } from '@/utilities/helper';
 import Image from 'next/image';
 
 const CatDetails = ({ params }: TCatDetailsProps) => {
